@@ -1,1 +1,39 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.clinical-gradient {
+  background: linear-gradient(135deg, #003b72 0%, #00529b 100%);
+}
+
+.glass-nav {
+  background: rgba(248, 249, 255, 0.8);
+  backdrop-filter: blur(12px);
+}
+
+/* WhatsApp botón flotante */
+#whatsapp-float {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  color: white;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.18);
+  z-index: 60;
+  text-decoration: none;
+}
+#whatsapp-float .material-symbols-outlined {
+  font-variation-settings: 'FILL' 1, 'wght' 400;
+  font-size: 28px;
+}
+#whatsapp-float:hover { transform: translateY(-3px); }

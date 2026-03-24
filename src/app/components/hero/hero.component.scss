@@ -1,0 +1,13 @@
+/* Small component-specific styles from design */
+.material-symbols-outlined {
+	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.clinical-gradient {
+	background: linear-gradient(135deg, #003b72 0%, #00529b 100%);
+}
+
+.glass-nav {
+	background: rgba(248, 249, 255, 0.8);
+	backdrop-filter: blur(12px);
+}
