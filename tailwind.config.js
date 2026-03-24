@@ -1,0 +1,66 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{html,ts}",
+  ],
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "secondary-container": "#68abff",
+        "inverse-on-surface": "#eaf1ff",
+        "primary-container": "#00529b",
+        "surface-dim": "#cbdbf5",
+        "secondary-fixed-dim": "#a4c9ff",
+        "primary-fixed": "#d5e3ff",
+        "tertiary-fixed-dim": "#4cd6fb",
+        "on-tertiary-container": "#4bd5fa",
+        "on-surface": "#0b1c30",
+        "on-secondary": "#ffffff",
+        "on-secondary-fixed-variant": "#004883",
+        "surface-variant": "#d3e4fe",
+        "on-tertiary-fixed-variant": "#004e5f",
+        "inverse-surface": "#213145",
+        "on-secondary-container": "#003e73",
+        "on-background": "#0b1c30",
+        "on-surface-variant": "#424751",
+        "secondary-fixed": "#d4e3ff",
+        "on-primary-fixed": "#001c3b",
+        "primary-fixed-dim": "#a6c8ff",
+        "outline-variant": "#c2c6d3",
+        "error": "#ba1a1a",
+        "background": "#f8f9ff",
+        "on-secondary-fixed": "#001c39",
+        "tertiary-fixed": "#b3ebff",
+        "surface-container-highest": "#d3e4fe",
+        "on-primary-fixed-variant": "#004787",
+        "primary": "#003b72",
+        "surface-container-high": "#dce9ff",
+        "on-primary": "#ffffff",
+        "surface-bright": "#f8f9ff",
+        "on-primary-container": "#a5c7ff",
+        "inverse-primary": "#a6c8ff",
+        "tertiary-container": "#005a6d",
+        "on-error": "#ffffff",
+        "surface-container-low": "#eff4ff",
+        "surface-tint": "#1d5fa8",
+        "surface-container": "#e5eeff",
+        "secondary": "#0060ac",
+        "tertiary": "#004150",
+        "surface-container-lowest": "#ffffff",
+        "outline": "#727782",
+        "on-tertiary-fixed": "#001f27",
+        "error-container": "#ffdad6",
+        "on-error-container": "#93000a",
+        "surface": "#f8f9ff",
+        "on-tertiary": "#ffffff"
+      },
+      fontFamily: {
+        "headline": ["Inter"],
+        "body": ["Inter"],
+        "label": ["Inter"]
+      }
+    }
+  },
+  plugins: [],
+}
