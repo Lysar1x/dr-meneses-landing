@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 export class NavbarComponent {
   openCalendly(evt?: Event): void {
     evt?.preventDefault();
-    const url = 'https://calendly.com/dr-jesus-meneses/valoracion';
+    const url = 'https://calendly.com/jesus-meneses-ortopedista/30min';
     try {
       window.open(url, '_blank', 'noopener');
     } catch (e) {

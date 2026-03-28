@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, AfterViewInit, ChangeDetectorRef, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './hero.component.scss'
 })
 export class HeroComponent {
+  @ViewChild('imageSlider', { read: ElementRef }) imageSlider?: ElementRef<HTMLDivElement>;
+
   submitting = false;
   success = false;
   message = '';
@@ -16,7 +18,7 @@ export class HeroComponent {
   constructor(private cd: ChangeDetectorRef) {}
 
   openCalendly(): void {
-    const url = 'https://calendly.com/dr-jesus-meneses/valoracion';
+    const url = 'https://calendly.com/jesus-meneses-ortopedista/30min';
     try {
       window.open(url, '_blank', 'noopener');
     } catch (e) {
@@ -32,6 +34,19 @@ export class HeroComponent {
       } catch (e) {
       }
     }
+  }
+
+  scrollSlider(direction: 'left' | 'right'): void {
+    const slider = this.imageSlider?.nativeElement;
+    if (!slider) {
+      return;
+    }
+
+    const scrollAmount = slider.clientWidth;
+    slider.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth',
+    });
   }
 
   ngAfterViewInit(): void {
