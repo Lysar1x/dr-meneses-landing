@@ -563,32 +563,61 @@
           Horario: 10:00 AM - 13:00 PM previo a cita <br />
           Fin de semana: 10:00 AM - 16:00 PM previo a cita
         </p>
-        <div
-          class="bg-surface-container-low rounded-xl aspect-[4/3] overflow-hidden border-2 border-outline-variant p-0 relative">
-          <div style="width: 100%; height: 100%; min-height: 420px">
-            <div class="calendly-inline-widget" data-url="https://calendly.com/jesus-meneses-ortopedista/30min"
-              style="min-width: 320px; height: 100%; min-height: 420px"></div>
-          </div>
-          <div class="absolute inset-0 flex items-center justify-center p-4" *ngIf="!calendlyLoaded">
-            <div class="text-center">
-              <div class="mb-3">
-                <svg class="animate-spin mx-auto" width="28" height="28" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="10" stroke="#cbd5e1" stroke-width="4" fill="none" stroke-linecap="round">
-                  </circle>
-                </svg>
-              </div>
-              <div class="text-sm text-on-surface-variant mb-2">Cargando calendario...</div>
-              <div class="text-sm">
-                <a href="https://calendly.com/jesus-meneses-ortopedista/30min" target="_blank" rel="noopener noreferrer"
-                  class="text-primary underline">Abrir la agenda en una nueva pestaña</a>
-              </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <!-- Hospital Guadalupe -->
+          <div class="bg-surface-container-low rounded-2xl overflow-hidden border border-outline-variant/30 shadow-sm flex flex-col group hover:shadow-md transition-all">
+            <div class="p-4 border-b border-outline-variant/10">
+              <h4 class="font-bold text-on-surface">Hospital Guadalupe</h4>
+              <p class="text-xs text-on-surface-variant line-clamp-1">Beatriz Paredes Rangel 36, Tlaxcala</p>
+            </div>
+            <div class="aspect-video w-full bg-surface-container-high relative overflow-hidden">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.5368471395627!2d-98.2373693!3d19.3024973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8425453ed5111f5d%3A0x20c466a92da68f38!2sHospital%20Guadalupe!5e0!3m2!1ses-419!2smx!4v1774816490936!5m2!1ses-419!2smx" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
             </div>
           </div>
-          <div class="p-4 text-center text-sm text-on-surface-variant">
-            Si no ves el calendario,
-            <a href="https://calendly.com/jesus-meneses-ortopedista/30min" target="_blank" rel="noopener noreferrer"
-              class="text-primary underline">abre la agenda en una nueva pestaña</a>
-            (AdBlock puede bloquear el widget).
+
+          <!-- Hospital Santé -->
+          <div class="bg-surface-container-low rounded-2xl overflow-hidden border border-outline-variant/30 shadow-sm flex flex-col group hover:shadow-md transition-all">
+            <div class="p-4 border-b border-outline-variant/10">
+              <h4 class="font-bold text-on-surface">Hospital Santé</h4>
+              <p class="text-xs text-on-surface-variant line-clamp-1">Democracia 162, Xicohtzinco</p>
+            </div>
+            <div class="aspect-video w-full bg-surface-container-high relative overflow-hidden">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.2174956604363!2d-98.2380992!3d19.185700499999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfc5e7fdd5a9b7%3A0x79e67640a6f4c434!2sSant%C3%A9%20-%20Hospital%20de%20Especialidades!5e0!3m2!1ses-419!2smx!4v1774816535789!5m2!1ses-419!2smx" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+          </div>
+
+          <!-- Hospital Humanitas -->
+          <div class="bg-surface-container-low rounded-2xl overflow-hidden border border-outline-variant/30 shadow-sm flex flex-col group hover:shadow-md transition-all">
+            <div class="p-4 border-b border-outline-variant/10">
+              <h4 class="font-bold text-on-surface">Hospital Humanitas</h4>
+              <p class="text-xs text-on-surface-variant line-clamp-1">Calle de la Rivera 1, Tlaxcala</p>
+            </div>
+            <div class="aspect-video w-full bg-surface-container-high relative overflow-hidden">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3764.917682357221!2d-98.22286249999999!3d19.329378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfd9677a78cd65%3A0x51ec9ce6a8a5b163!2sHospital%20Humanitas!5e0!3m2!1ses-419!2smx!4v1774816573030!5m2!1ses-419!2smx" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+          </div>
+
+          <!-- Hospital Salvatore -->
+          <div class="bg-surface-container-low rounded-2xl overflow-hidden border border-outline-variant/30 shadow-sm flex flex-col group hover:shadow-md transition-all">
+            <div class="p-4 border-b border-outline-variant/10">
+              <h4 class="font-bold text-on-surface">Hospital Salvatore</h4>
+              <p class="text-xs text-on-surface-variant line-clamp-1">Santa María Acuitlapilco, Tlaxcala</p>
+            </div>
+            <div class="aspect-video w-full bg-surface-container-high relative overflow-hidden">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.791452380766!2d-98.2414508!3d19.291433299999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfd96cb940da4b%3A0xd8dc25e86a7c4363!2sSalvatore%20Hospital%20de%20Especialidades!5e0!3m2!1ses-419!2smx!4v1774816614714!5m2!1ses-419!2smx" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
           </div>
         </div>
       </div>

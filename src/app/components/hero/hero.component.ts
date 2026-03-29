@@ -14,7 +14,6 @@ export class HeroComponent {
   submitting = false;
   success = false;
   message = '';
-  calendlyLoaded = false;
   constructor(private cd: ChangeDetectorRef) {}
 
   openCalendly(): void {
@@ -50,33 +49,7 @@ export class HeroComponent {
   }
 
   ngAfterViewInit(): void {
-    // Try several times to detect if the Calendly widget has initialized.
-    const setLoaded = () => {
-      // update in next tick to avoid ExpressionChangedAfterItHasBeenCheckedError
-      setTimeout(() => {
-        this.calendlyLoaded = true;
-        try { this.cd.detectChanges(); } catch {}
-      }, 0);
-    };
-
-    const check = () => {
-      const w: any = window as any;
-      const widgetEl = document.querySelector('.calendly-inline-widget');
-      const iframe = widgetEl ? widgetEl.querySelector('iframe') : null;
-      // diagnostic logs to help detect why the widget may not appear
-      try {
-        // eslint-disable-next-line no-console
-        console.debug('[hero] Calendly check', { hasWidget: !!widgetEl, hasIframe: !!iframe, hasCalendly: !!w.Calendly });
-      } catch (e) {}
-      if (w.Calendly || iframe) {
-        setLoaded();
-      }
-    };
-
-    // check immediately and a few times later in case script is still loading
-    setTimeout(check, 0);
-    setTimeout(check, 800);
-    setTimeout(check, 1600);
+    // Component initialization logic if needed
   }
 
   async onSubmit(evt: Event) {
