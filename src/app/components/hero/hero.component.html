@@ -1,22 +1,26 @@
+<!-- Background Canvas -->
+<canvas id="bg-canvas"></canvas>
+
 <!-- Hero Section: Intentional Asymmetry -->
-<section class="relative pt-32 pb-20 px-8 overflow-hidden min-h-[720px] flex items-center" id="home">
+<section class="relative pt-32 pb-20 px-8 overflow-hidden min-h-[720px] flex items-center" id="home" appScrollReveal>
   <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
     <div class="lg:col-span-7 z-10">
       <span
         class="inline-block py-1 px-4 rounded-full bg-surface-container-high text-primary font-semibold text-sm mb-6 uppercase tracking-wider">
         Enfoque en Resultados
       </span>
-      <h1 class="text-5xl md:text-7xl font-headline font-extrabold text-on-surface tracking-tight leading-[1.1] mb-8">
+      <h1
+        class="text-5xl md:text-7xl font-headline font-extrabold text-on-surface tracking-tight leading-[1.1] mb-8 reveal-on-scroll delay-100">
         Recupera tu <span class="text-primary">movilidad</span> y vive sin dolor.
       </h1>
-      <p class="text-xl text-on-surface-variant max-w-xl leading-relaxed mb-10">
+      <p class="text-xl text-on-surface-variant max-w-xl leading-relaxed mb-10 reveal-on-scroll delay-200">
         Especialista en ortopedia y traumatología dedicado a restaurar la calidad de vida de sus
         pacientes a través de un buen diagnóstico y tratamiento personalizado.
       </p>
 
-      <div class="flex flex-wrap gap-4">
+      <div class="flex flex-wrap gap-4 reveal-on-scroll delay-300">
         <a href="https://calendly.com/jesus-meneses-ortopedista/30min" target="_blank" rel="noopener noreferrer"
-          class="clinical-gradient text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-primary/20 transition-all flex items-center gap-2 group">
+          class="clinical-gradient text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-primary/20 hover:scale-105 transition-all flex items-center gap-2 group">
           Agendar Valoración
           <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
         </a>
@@ -31,8 +35,10 @@
     <div class="lg:col-span-5 relative">
       <div class="absolute -top-20 -right-20 w-96 h-96 bg-secondary-container/20 rounded-full blur-3xl"></div>
       <div
-        class="relative bg-surface-container-low rounded-xl overflow-hidden aspect-[4/5] shadow-2xl border-white border-8">
-        <img alt="Fotografía profesional" class="w-full h-full object-cover" src="../../../assets/images/perfil.jpeg" />
+        class="relative bg-surface-container-low rounded-xl overflow-hidden aspect-[4/5] shadow-2xl border-white border-8 reveal-on-scroll delay-200">
+        <img alt="Fotografía profesional"
+          class="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+          src="../../../assets/images/perfil.jpeg" />
       </div>
 
       <div
@@ -51,7 +57,7 @@
   </div>
 </section>
 
-<section id="formacion-academica" class="py-24 px-8">
+<section id="formacion-academica" class="py-24 px-8" appScrollReveal>
   <div class="max-w-7xl mx-auto">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
       <div>
@@ -103,7 +109,7 @@
 </section>
 
 <!-- Clinical Success Stats: Bento Grid Style -->
-<section class="py-24 px-8 bg-surface-container-low">
+<section class="py-24 px-8 bg-surface-container-low" appScrollReveal>
   <div class="max-w-7xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
       <div class="md:col-span-2 bg-surface-container-lowest p-10 rounded-xl shadow-sm border border-outline-variant/5">
@@ -128,7 +134,7 @@
 </section>
 
 <!-- Detailed Services: Floating Cards -->
-<section class="py-32 px-8" id="services">
+<section class="py-32 px-8" id="services" appScrollReveal>
   <div class="max-w-7xl mx-auto">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
       <div class="max-w-2xl">
@@ -430,7 +436,7 @@
   </div>
 </section>
 
-<section class="py-24 px-8">
+<section class="py-24 px-8" appScrollReveal>
   <div class="max-w-7xl mx-auto">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
       <div>
@@ -497,7 +503,7 @@
 </section>
 
 <!-- Success Stories: Editorial Testimonials -->
-<section class="py-32 px-8 bg-surface-container-high relative overflow-hidden">
+<section class="py-32 px-8 bg-surface-container-high relative overflow-hidden" appScrollReveal>
   <div class="absolute inset-0 opacity-10 pointer-events-none">
     <div class="absolute top-0 left-0 w-full h-full"
       style="background-image: radial-gradient(circle at 20% 30%, #003b72 0%, transparent 50%)"></div>
@@ -557,7 +563,7 @@
 </section>
 
 <!-- Appointment & Contact: Dual Layout -->
-<section class="py-32 px-8" id="contact">
+<section class="py-32 px-8" id="contact" appScrollReveal>
   <div class="max-w-7xl mx-auto">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
       <div>
