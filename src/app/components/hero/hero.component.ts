@@ -52,46 +52,46 @@ export class HeroComponent {
     // Component initialization logic if needed
   }
 
-  async onSubmit(evt: Event) {
+  onSubmit(evt: Event) {
     evt.preventDefault();
     const form = evt.target as HTMLFormElement;
     const fd = new FormData(form);
-    const payload: any = {
-      name: (fd.get('name') as string) || '',
-      telefono: (fd.get('telefono') as string) || '',
-      motivo: (fd.get('motivo') as string) || '',
-      mensaje: (fd.get('mensaje') as string) || '',
-      correo: (fd.get('correo') as string) || '',
-    };
+    
+    const name = (fd.get('name') as string) || '';
+    const telefono = (fd.get('telefono') as string) || '';
+    const motivo = (fd.get('motivo') as string) || '';
+    const mensaje = (fd.get('mensaje') as string) || '';
 
-    if (!payload.name || !payload.correo || !payload.mensaje) {
-      this.message = 'Por favor completa nombre, correo y mensaje.';
+    if (!name || !telefono || !mensaje) {
+      this.message = 'Por favor completa todos los campos obligatorios.';
       this.success = false;
       return;
     }
 
     this.submitting = true;
-    this.message = '';
+    this.message = 'Redirigiendo a WhatsApp...';
+
+    // WhatsApp Number (from footer)
+    const phoneNumber = '522462443810';
+    
+    // Structured Message
+    const textMessage = `Hola Dr. Meneses, tengo una duda rápida:
+*Nombre:* ${name}
+*Teléfono:* ${telefono}
+*Motivo:* ${motivo}
+*Mensaje:* ${mensaje}`;
+
+    const encodedMessage = encodeURIComponent(textMessage);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-
-      const data = await res.json();
-      if (res.ok) {
-        this.success = true;
-        this.message = 'Consulta enviada. Gracias — te contactaremos pronto.';
-        form.reset();
-      } else {
-        this.success = false;
-        this.message = data?.error || 'Error al enviar la consulta.';
-      }
+      window.open(whatsappUrl, '_blank', 'noopener');
+      this.success = true;
+      this.message = 'Se ha abierto WhatsApp para enviar tu duda.';
+      form.reset();
     } catch (err) {
       this.success = false;
-      this.message = 'Error de red al enviar la consulta.';
+      this.message = 'No se pudo abrir WhatsApp automáticamente. Intenta de nuevo.';
     } finally {
       this.submitting = false;
     }
