@@ -27,7 +27,7 @@ export class HeroComponent {
   constructor(private cd: ChangeDetectorRef) {}
 
   openCalendly(): void {
-    const url = 'https://calendly.com/jesus-meneses-ortopedista/30min';
+    const url = 'https://calendly.com/jesus-meneses-ortopedista/citas';
     try {
       window.open(url, '_blank', 'noopener');
     } catch (e) {
