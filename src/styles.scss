@@ -146,9 +146,54 @@
   transition-delay: 500ms;
 }
 
-/* spline */
+/* spline — anti-scroll-hijacking */
 body {
   overflow: auto !important;
+}
+
+/* ─── Spline 3D background (vive en app.component.html) ─── */
+.spline-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
+  z-index: 0;
+  pointer-events: none; /* decorativo: no bloquea clics */
+  overflow: hidden;
+}
+
+.spline-bg spline-viewer {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
+  /* NO contain:strict — colapsaba el canvas WebGL a 0x0 */
+}
+
+/* ocultar logo de Spline (plan gratuito) */
+spline-viewer::part(logo) {
+  display: none;
+}
+
+/* fallback para móviles/dispositivos de gama baja */
+.spline-fallback {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 15% 25%, rgba(0, 59, 114, 0.15) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 75%, rgba(0, 82, 155, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 110%, rgba(214, 226, 255, 0.18) 0%, transparent 60%),
+    linear-gradient(165deg, #f0f4ff 0%, #f8f9ff 50%, #eef3ff 100%);
+  display: none; /* se activa por JS */
+  pointer-events: none;
 }
 
 /* Smooth Scroll */
