@@ -25,3 +25,53 @@
 		scroll-snap-type: x mandatory;
 	}
 }
+
+/* ─── Spline 3D Background ─────────────────────────────────── */
+.spline-bg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+	/* Decorative only — no clicks hijacked */
+	pointer-events: none;
+}
+
+.spline-bg spline-viewer {
+	display: block;
+	width: 100%;
+	height: 100%;
+	/* Reserve space to avoid layout shift (CLS) */
+	contain: strict;
+}
+
+/* Hide Spline watermark (free-plan CSS workaround) */
+spline-viewer::part(logo) {
+	display: none;
+}
+
+/* Fallback — shown on mobile / low-end devices or while Spline loads */
+.spline-fallback {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+	/* Premium gradient that matches the site's medical blue palette */
+	background:
+		radial-gradient(ellipse at 15% 25%, rgba(0, 59, 114, 0.15) 0%, transparent 55%),
+		radial-gradient(ellipse at 85% 75%, rgba(0, 82, 155, 0.10) 0%, transparent 55%),
+		radial-gradient(ellipse at 50% 110%, rgba(214, 226, 255, 0.18) 0%, transparent 60%),
+		linear-gradient(165deg, #f0f4ff 0%, #f8f9ff 50%, #eef3ff 100%);
+	display: none; /* shown via JS when needed */
+	pointer-events: none;
+}
+
+/* Make sure all page content sits above the fixed Spline background */
+:host > section,
+:host > footer {
+	position: relative;
+	z-index: 1;
+}
