@@ -161,6 +161,21 @@ body {
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
+  /*
+   * Oculta el watermark "Built with Spline" del canvas WebGL.
+   * El badge mide ~175px × 40px y está a ~60px del borde derecho y ~15px del fondo.
+   * El elipse cubre esa zona con una transición suave para no mostrar borde brusco.
+   */
+  mask-image: radial-gradient(
+    ellipse 420px 130px at 100% 100%,
+    transparent 55%,
+    black 80%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 420px 130px at 100% 100%,
+    transparent 55%,
+    black 80%
+  );
 }
 
 #spline-wrapper canvas {
@@ -169,6 +184,24 @@ body {
   height: 100vh !important;
   min-width: 100vw;
   min-height: 100vh;
+}
+
+/* Ocultar marca de agua "Built with Spline"
+   El runtime inyecta un iframe directamente en body con position:fixed
+   Los iframes de Google Maps están anidados en los componentes, no en body directo */
+a[href*="spline.design"],
+a[href*="spline.design"] *,
+[class*="watermark"],
+[class*="logo"][style*="position: fixed"],
+[class*="logo"][style*="position:fixed"] {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* El iframe del watermark es hijo DIRECTO del body, los de Google Maps no */
+body > iframe {
+  display: none !important;
 }
 
 /* fallback para móviles / sin WebGL */

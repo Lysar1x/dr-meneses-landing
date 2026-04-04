@@ -22,16 +22,11 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   private isLoading = false;
   private splineEnabled = false;
 
-  // Only fires when the GPU truly loses the WebGL context (rare).
-  // A simple tab switch does NOT trigger this — Spline resumes its rAF loop
-  // automatically when the tab becomes visible again.
   private contextLostHandler = (e: Event) => {
     e.preventDefault();
     setTimeout(() => this.mountSpline(), 600);
   };
 
-  // On tab return: only reload if the canvas/app no longer exists.
-  // Otherwise Spline resumes on its own — don't interfere.
   private visibilityHandler = () => {
     if (document.visibilityState !== 'visible') return;
     if (!this.canvas || !this.splineApp) {
@@ -45,7 +40,6 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       this.showFallback();
       return;
     }
-    // Defer until after Angular renders the rest of the page (critical for FCP)
     setTimeout(() => this.mountSpline(), 0);
     document.addEventListener('visibilitychange', this.visibilityHandler);
   }
@@ -55,19 +49,14 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     this.destroySpline();
   }
 
-  /** Detects if this device can handle Spline without lagging */
   private shouldLoadSpline(): boolean {
-    const isMobile   = window.innerWidth < 768;
-    const isLowEnd   = navigator.hardwareConcurrency <= 2;
+    const isMobile = window.innerWidth < 768;
+    const isLowEnd = navigator.hardwareConcurrency <= 2;
     const testCanvas = document.createElement('canvas');
     const gl = testCanvas.getContext('webgl2') || testCanvas.getContext('webgl');
     return !isMobile && !isLowEnd && !!gl;
   }
 
-  /**
-   * Creates a canvas + Application and loads the scene.
-   * Called once on init, and only again if the WebGL context is lost.
-   */
   private async mountSpline(): Promise<void> {
     if (this.isLoading) return;
     this.isLoading = true;
@@ -75,38 +64,54 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     const wrapper = document.getElementById('spline-wrapper');
     if (!wrapper) { this.isLoading = false; return; }
 
-    // Clean up previous instance if any
     this.destroySpline();
 
-    // Fresh canvas — cap pixel ratio to 1.5 to reduce GPU load on HiDPI screens
     this.canvas = document.createElement('canvas');
     const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-    const w = window.innerWidth;
-    const h = window.innerHeight;
-    this.canvas.width  = Math.round(w * dpr);
-    this.canvas.height = Math.round(h * dpr);
-    this.canvas.style.cssText = `width:100vw;height:100vh;display:block;`;
+    this.canvas.width = Math.round(window.innerWidth * dpr);
+    this.canvas.height = Math.round(window.innerHeight * dpr);
+    this.canvas.style.cssText = 'width:100vw;height:100vh;display:block;';
     this.canvas.addEventListener('webglcontextlost', this.contextLostHandler);
     wrapper.appendChild(this.canvas);
 
     this.splineApp = new Application(this.canvas);
 
-    // Failsafe: show fallback if scene takes > 12s
     const timeoutId = setTimeout(() => {
       this.isLoading = false;
-      if (!this.canvas) return; // already loaded
+      if (!this.canvas) return;
       this.showFallback();
     }, 12000);
 
     try {
       await this.splineApp.load(SPLINE_URL);
       clearTimeout(timeoutId);
+      this.removeWatermark();
     } catch {
       clearTimeout(timeoutId);
       this.showFallback();
     } finally {
       this.isLoading = false;
     }
+  }
+
+  private removeWatermark(): void {
+    const nuke = () => {
+      Array.from(document.body.children).forEach(child => {
+        if (child.tagName !== 'IFRAME') return;
+        const iframe = child as HTMLIFrameElement;
+        const src = iframe.src || iframe.getAttribute('src') || '';
+
+        const isCalendly = src.includes('calendly.com');
+        const isSplineWatermark = !isCalendly;
+        if (isSplineWatermark) {
+          document.body.removeChild(child);
+        }
+      });
+    };
+
+    nuke();
+    const interval = setInterval(nuke, 500);
+    setTimeout(() => clearInterval(interval), 20000);
   }
 
   private destroySpline(): void {
@@ -120,9 +125,9 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   }
 
   private showFallback(): void {
-    const wrapper  = document.getElementById('spline-wrapper');
+    const wrapper = document.getElementById('spline-wrapper');
     const fallback = document.getElementById('spline-fallback');
-    if (wrapper)  wrapper.style.display  = 'none';
+    if (wrapper) wrapper.style.display = 'none';
     if (fallback) fallback.style.display = 'block';
   }
 }
